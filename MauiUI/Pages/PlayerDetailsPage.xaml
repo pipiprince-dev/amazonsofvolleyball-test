@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiUI.Pages.PlayerDetailsPage"
+             xmlns:local="clr-namespace:Backend.Models;assembly=Backend.Models"
+             Title="{Binding Name}">
+
+    <ContentPage.BindingContext>
+        <local:PlayerModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="update.svg" Clicked="OnUpdate" Command="{Binding ValidateCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout BackgroundColor="Black">
+            <Border Stroke="Black"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 0,0,15,15"
+                    Padding="2,0,1,0"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Black">
+                <Image Aspect="AspectFit">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding WebImageLink}"/>
+                    </Image.Source>
+                </Image>
+            </Border>
+            <Label Text="{Binding Name}" Style="{StaticResource title}"/>
+            <Label Text="{Binding PositionName}"
+                   TextColor="#C49B33" FontSize="15"
+                   HorizontalOptions="End" Padding="0,0,0,15" TextTransform="Uppercase"/>
+            <Label Padding="5,0,5,10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding BirthPlace}" TextColor="#A49B33" FontSize="18"/>
+                        <Span Text=" (" TextColor="#C49B33" FontSize="18"/>
+                        <Span Text="{Binding Birthday}" TextColor="#C49B33" FontSize="15"/>
+                        <Span Text=")" TextColor="#C49B33" FontSize="18"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label TextColor="#A49B33"
+                   FontSize="18"
+                   Padding="5,0,5,10">
+                <Label.Text>
+                    <MultiBinding StringFormat="club: {0}">
+                        <Binding Path="Club"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+            <Label TextColor="#A49B33"
+                   FontSize="18"
+                   Padding="5,0,5,10">
+                <Label.Text>
+                    <MultiBinding StringFormat="height: {0}m">
+                        <Binding Path="Height"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+            <Label TextColor="#A49B33"
+                   FontSize="18"
+                   Padding="5,0,5,10">
+                <Label.Text>
+                    <MultiBinding StringFormat="weight: {0}kg">
+                        <Binding Path="Weight"/>
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+            <BoxView HeightRequest="1" WidthRequest="300" Color="#C49B33" Margin="0,10,0,10"/>
+            <Label Text="{Binding Description}" TextColor="#A49B33" LineHeight="1.2" FontSize="18" Padding="5,0,5,10"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,24 @@
+﻿global using System.Text.Json;
+global using Microsoft.AspNetCore.HttpOverrides;
+global using Serilog;
+global using Serilog.Events;
+global using System.Text.Json.Serialization;
+global using Microsoft.AspNetCore.Mvc;
+global using System.ComponentModel.DataAnnotations;
+global using Swashbuckle.AspNetCore.Annotations;
+global using System.Text;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Authorization;
+
+global using Backend.Infrastructure.Interfaces.Services;
+global using Backend.Models;
+global using Backend.Infrastructure.Constants;
+global using Backend.Core.Enums;
+global using Backend.Models.Options;
+global using Backend.Middleware.Middlewares;
+global using Backend.Middleware.Configurations;
+global using Backend.Middleware.Providers;
+global using Backend.Database;
+global using Backend.Middleware.Filters;
+global using Backend.Infrastructure.Helpers;
+global using Backend.Database.Entities;

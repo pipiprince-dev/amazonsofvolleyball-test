@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:Backend.Models;assembly=Backend.Models"
+             xmlns:vm="clr-namespace:MauiUI.ViewModels"
+             x:Class="MauiUI.Pages.LoginPage"
+             x:DataType="vm:LoginViewModel"
+             Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="20,0"
+                             VerticalOptions="Center">
+
+            <VerticalStackLayout>
+                <Label Text="Welcome to Amazons of Vollyeball" FontSize="28" TextColor="Gray" HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+
+            <Image Source="volleyball.png"
+                HeightRequest="250"
+                WidthRequest="250"
+                HorizontalOptions="Center" />
+
+            <StackLayout Orientation="Horizontal">
+                <Frame ZIndex="1" HasShadow="True" BorderColor="White"
+                       HeightRequest="55" WidthRequest="55" CornerRadius="25"
+                       Margin="0,0,-32,0">
+                    <Image Source="email.png" HeightRequest="30" WidthRequest="30" />
+                </Frame>
+                <Frame HasShadow="True" Padding="0" BorderColor="White" HeightRequest="55" HorizontalOptions="FillAndExpand">
+                    <Entry x:Name="email" Margin="35,0,20,0" VerticalOptions="Center" Placeholder="email"  Keyboard="Email"
+                           Text="{Binding Email}"
+                           toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference password}"
+                           ReturnType="Next" />
+                </Frame>
+            </StackLayout>
+            <Label x:Name="lblValidationErrorEmail" Text="{Binding [Email].Error}" TextColor="Red" />
+
+            <StackLayout Orientation="Horizontal">
+                <Frame ZIndex="1" HasShadow="True" BorderColor="White" 
+                       HeightRequest="55" WidthRequest="55" CornerRadius="25"
+                       Margin="0,0,-32,0">
+                    <Image Source="password.jpg" HeightRequest="30" WidthRequest="30"/>
+                </Frame>
+                <Frame HasShadow="True" Padding="0" BorderColor="White" HeightRequest="55" HorizontalOptions="FillAndExpand">
+                    <Entry x:Name="password" Margin="35,0,20,0" VerticalOptions="Center" Placeholder="password" IsPassword="True"
+                           Text="{Binding Password}" />
+                </Frame>
+            </StackLayout>
+            <Label x:Name="lblValidationErrorPassword" Text="{Binding [Password].Error}" TextColor="Red" />
+
+            <Button Text="Login" WidthRequest="120" CornerRadius="25" HorizontalOptions="Center" BackgroundColor="Blue"
+                    Command="{Binding LoginCommand}" />
+            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
+                <Label Text="Don't have an account?" TextColor="Gray"/>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Register" TextColor="Blue">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToRegisterPageCommand}" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

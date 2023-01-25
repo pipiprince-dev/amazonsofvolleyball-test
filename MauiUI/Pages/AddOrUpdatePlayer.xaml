@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Backend.Models;assembly=Backend.Models"
+             xmlns:behaviors="clr-namespace:Maui.Behaviors"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="MauiUI.Pages.AddOrUpdatePlayer">
+    
+
+    <ContentPage.BindingContext>
+        <local:PlayerModel/>
+    </ContentPage.BindingContext>
+
+    <ScrollView Margin="10">
+        <VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="Name" />
+                <Entry x:Name="name" Text="{Binding Name, Mode=TwoWay}"
+                       ClearButtonVisibility="WhileEditing"
+                       toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference position}"
+                       ReturnType="Next">
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            EventName="TextChanged"
+                            Command="{Binding ValidateCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label x:Name="lblValidationErrorName" Text="{Binding [Name].Error}" TextColor="Red" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Margin="0,10">
+                <Label Text="Position" />
+                <Picker x:Name="position" Title="Select..."
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding Position, Mode=TwoWay}"
+                        behaviors:SetFocusOnPickerSelectedBehavior.NextElement="{x:Reference club}"/>
+                <Label x:Name="lblValidationErrorPosition" TextColor="red" Text="{Binding [Position].Error}"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Margin="0,10">
+                <Label Text="Club" />
+                <Entry x:Name="club" Text="{Binding Club, Mode=TwoWay}" 
+                       ClearButtonVisibility="WhileEditing"
+                       toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference birthday}"
+                       ReturnType="Next">
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            EventName="TextChanged"
+                            Command="{Binding ValidateCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label x:Name="lblValidationErrorClub" TextColor="red" Text="{Binding [Club].Error}"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Margin="0,10">
+                <Label Text="Birthday" />
+                <DatePicker  x:Name="birthday" Date="{Binding Birthday, Mode=TwoWay}"
+                             behaviors:SetFocusOnDatePickerSelectedBehavior.NextElement="{x:Reference birthplace}"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Margin="0,10">
+                <Label Text="Birth place" />
+                <Entry x:Name="birthplace" Text="{Binding BirthPlace, Mode=TwoWay}" 
+                       ClearButtonVisibility="WhileEditing"
+                       toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference weight}"
+                       ReturnType="Next">
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            EventName="TextChanged"
+                            Command="{Binding ValidateCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label x:Name="lblValidationErrorBirthPlace" TextColor="red" Text="{Binding [BirthPlace].Error}"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Margin="0,10">
+                <Label Text="Weight" />
+                <Entry x:Name="weight" Text="{Binding Weight, Mode=TwoWay}"
+                       ClearButtonVisibility="WhileEditing" Keyboard="Numeric"
+                       toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference height}"
+                       ReturnType="Next">
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            EventName="TextChanged"
+                            Command="{Binding ValidateCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label x:Name="lblValidationErrorWeight" TextColor="red" Text="{Binding [Weight].Error}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Margin="0,10">
+                <Label Text="Height" />
+                <Entry x:Name="height" Text="{Binding Height, Mode=TwoWay}" 
+                       ClearButtonVisibility="WhileEditing" Keyboard="Numeric"
+                       toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference webImageLink}"
+                       ReturnType="Next">
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            EventName="TextChanged"
+                            Command="{Binding ValidateCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label x:Name="lblValidationErrorHeight" TextColor="red" Text="{Binding [Height].Error}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Margin="0,10">
+                <Label Text="Image link" />
+                <Entry x:Name="webImageLink" Text="{Binding WebImageLink, Mode=TwoWay}"
+                       ClearButtonVisibility="WhileEditing"
+                       toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference description}"
+                       ReturnType="Next">
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            EventName="TextChanged"
+                            Command="{Binding ValidateCommand}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label x:Name="lblValidationErrorWebImageLink" TextColor="red" Text="{Binding [WebImageLink].Error}"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Margin="0,10">
+                <Label Text="Description" />
+                <Editor x:Name="description" Text="{Binding Description, Mode=TwoWay}"
+                        AutoSize="TextChanges">
+                    <Editor.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            EventName="TextChanged"
+                            Command="{Binding ValidateCommand}" />
+                    </Editor.Behaviors>
+                </Editor>
+                <Label x:Name="lblValidationErrorDescription" TextColor="red" Text="{Binding [Description].Error}"/>
+            </VerticalStackLayout>
+            <Button x:Name="submitButton" Clicked="OnSubmitClick" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

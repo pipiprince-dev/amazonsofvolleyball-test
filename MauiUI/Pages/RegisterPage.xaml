@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:MauiUI.ViewModels"
+             x:Class="MauiUI.Pages.RegisterPage"
+             x:DataType="vm:RegisterViewModel"
+             Title="Register">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="20,0"
+                             VerticalOptions="Center">
+
+            <VerticalStackLayout>
+                <Label Text="Welcome to Amazons of Vollyeball" FontSize="28" TextColor="Gray" HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+
+            <Image Source="volleyball.png"
+                HeightRequest="250"
+                WidthRequest="250"
+                HorizontalOptions="Center" />
+
+            <StackLayout Orientation="Horizontal">
+                <Frame ZIndex="1" HasShadow="True" BorderColor="White"
+                       HeightRequest="55" WidthRequest="55" CornerRadius="25"
+                       Margin="0,0,-32,0">
+                    <Image Source="user.png" HeightRequest="30" WidthRequest="30" />
+                </Frame>
+                <Frame HasShadow="True" Padding="0" BorderColor="White" HeightRequest="55" HorizontalOptions="FillAndExpand">
+                    <Entry x:Name="username" Margin="35,0,20,0" VerticalOptions="Center" Placeholder="email"  Keyboard="Email"
+                           Text="{Binding Username, Mode=TwoWay}"
+                           toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference email}"
+                           ReturnType="Next">
+                        <!--<Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding ValidateCommand}" />
+                        </Entry.Behaviors>-->
+                    </Entry>
+                </Frame>
+                <Label x:Name="lblValidationErrorUserName" Text="{Binding [Username].Error}" TextColor="Red" />
+            </StackLayout>
+
+
+            <StackLayout Orientation="Horizontal">
+                <Frame ZIndex="1" HasShadow="True" BorderColor="White"
+                       HeightRequest="55" WidthRequest="55" CornerRadius="25"
+                       Margin="0,0,-32,0">
+                    <Image Source="email.png" HeightRequest="30" WidthRequest="30" />
+                </Frame>
+                <Frame HasShadow="True" Padding="0" BorderColor="White" HeightRequest="55" HorizontalOptions="FillAndExpand">
+                    <Entry x:Name="email" Margin="35,0,20,0" VerticalOptions="Center" Placeholder="email"  Keyboard="Email"
+                           Text="{Binding Email, Mode=TwoWay}"
+                           toolkit:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference password}"
+                           ReturnType="Next">
+                        <!--<Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding ValidateCommand}" />
+                        </Entry.Behaviors>-->
+                    </Entry>
+                </Frame>
+                <Label x:Name="lblValidationErrorEmail" Text="{Binding [Email].Error}" TextColor="Red" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Frame ZIndex="1" HasShadow="True" BorderColor="White" 
+                       HeightRequest="55" WidthRequest="55" CornerRadius="25"
+                       Margin="0,0,-32,0">
+                    <Image Source="password.jpg" HeightRequest="30" WidthRequest="30"/>
+                </Frame>
+                <Frame HasShadow="True" Padding="0" BorderColor="White" HeightRequest="55" HorizontalOptions="FillAndExpand">
+                    <Entry x:Name="password" Margin="35,0,20,0" VerticalOptions="Center" Placeholder="password" IsPassword="True"
+                           Text="{Binding Password, Mode=TwoWay}">
+                        <!--<Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding ValidateCommand}" />
+                        </Entry.Behaviors>-->
+                    </Entry>
+                </Frame>
+                <Label x:Name="lblValidationErrorPassword" Text="{Binding [Password].Error}" TextColor="Red" />
+            </StackLayout>
+
+            <Button Text="Register" WidthRequest="120" CornerRadius="25" HorizontalOptions="Center" BackgroundColor="Blue"
+                    Command="{Binding RegisterCommand}" />
+
+            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
+                <Label Text="Have an account?" TextColor="Gray"/>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Login" TextColor="Blue">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToLoginPageCommand}" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
